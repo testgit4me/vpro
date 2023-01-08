@@ -1,0 +1,7 @@
+sys info
+ss -tpln
+
+
+
+bash:
+find /opt -name *jenkins*
