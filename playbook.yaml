@@ -1,0 +1,64 @@
+---
+- name: install web server
+  hosts: websrv
+  become: yes
+#  vars:
+ #   dbname: Lab_Data
+  #  dbuser: devops
+   # dbpass: 1234567
+
+  tasks:
+  - debug:
+      msg: "database name is {{dbname}}"   
+  - debug:
+      msg: "database user is {{dbuser}}"
+  - name: install apache
+    yum:
+      name: httpd
+      state: present
+  - name: start & enable HTTPD
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: copy index.html file
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+
+- name: install SQL Server
+  hosts: dbsrv
+  become: yes
+
+  tasks:
+  - debug:
+      msg: "database name is {{dbname}}"
+  - debug:
+      msg: "database user is {{dbuser}}"
+  - name: install maria DB
+    yum:
+      name: mariadb-server
+      state: present
+  - name: Install Python MySQL 
+    yum:
+      name: MySQL-python
+      state: present
+  - name: start & enable service
+    service:
+      name: mariadb
+      state: started
+      enabled: yes 
+  - name: create a new database with name 'accounts'
+    mysql_db:
+      name: "{{dbname}}"
+      state: present
+  - name: create database user with name 'admin'
+    mysql_user:
+      name: "{{dbuser}}"
+      password: "{{dbpass}}"
+      priv: '*.*:ALL'
+      state: present
+
+
+
+

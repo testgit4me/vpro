@@ -1,0 +1,39 @@
+---
+- name: create EC2 Instance on AWS via Ansible
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: create a new EC2 key pair, returns generated private key
+      ec2_key:
+        name: keypair
+        region: us-east-1
+      register: keyinfo
+
+   # - name: Print key
+   #   debug:
+   #    var: keyinfo
+
+    - name: save keypair.pem
+      copy:
+        content: "{{keyinfo.key.private_key}}"
+        dest: ./keypair.pem
+      when: keyinfo.changed
+
+    - name: create EC2 Instance
+      ec2:
+        key_name: keypair
+        instance_type: t2.micro
+        image: ami-002070d43b0a4f171
+        region: us-east-1
+        wait: yes
+        exact_count: 1
+        instance_tags:
+          Name: web
+          db: postgres
+        count_tag:
+          Name: web
+          db: postgres
+
+
+ 
+

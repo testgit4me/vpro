@@ -1,0 +1,44 @@
+---
+- name: install SQL Server
+  hosts: dbsrv
+  become: yes
+#  vars:
+ #   dbname: "Lab_data"
+  #  dbuser: lab
+   # dbpass: 12345678
+
+  tasks:
+  - name: install maria DB
+    yum:
+      name: mariadb-server
+      state: present
+
+  - debug:
+      msg: "DB name is {{dbname}}"
+  - debug: 
+      msg: "Database user is {{dbuser}}"     
+
+
+  - name: Install Python MySQL 
+    yum:
+      name: MySQL-python
+      state: present
+  - name: start & enable service
+    service:
+      name: mariadb
+      state: started
+      enabled: yes 
+  - name: create a new database with name 'accounts'
+    mysql_db:
+      name: "{{dbname}}"
+      state: present
+  - name: create database user with name 'admin'
+    mysql_user:
+      name: "{{dbuser}}"
+      password: "{{dbuser}}"
+      priv: '*.*:ALL'
+      state: present
+
+
+
+

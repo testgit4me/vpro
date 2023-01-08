@@ -1,0 +1,47 @@
+---
+- name: install web server
+  hosts: web_srv
+  become: yes
+
+  tasks:
+  - name: install apache
+    yum:
+      name: httpd
+      state: present
+  - name: start & enable HTTPD
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: copy index.html file
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+
+- name: install SQL Server
+  hosts: db_srv
+  become: yes
+
+  tasks:
+  - name: install maria DB
+    yum:
+      name: mariadb-server
+      state: present
+  - name: start & enable service
+    service:
+      name: mariadb
+      state: started
+      enabled: yes
+
+
+
+
+
+
+
+
+
+
+
+
+

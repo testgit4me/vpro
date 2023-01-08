@@ -1,0 +1,10 @@
+build ansible_host=172.31.95.99
+prod ansible_host=172.31.88.4
+
+[servers]
+build
+prod
+
+[servers:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=keypair.pem

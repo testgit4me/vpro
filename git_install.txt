@@ -4,6 +4,7 @@ git config --list --show-origin
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
 git config --global --list
+
 git init
 git add .
 git commit -m "first commit"

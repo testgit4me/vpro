@@ -1,0 +1,15 @@
+---
+- name: learning facts
+  hosts: all
+  tasks:
+    - debug:
+        var: ansible_processor[2]
+    - debug:
+        var: ansible_distribution
+    - debug:
+        var: ansible_memory_mb.real.free
+    - debug:
+        var: ansible_system_vendor
+     
+
+  

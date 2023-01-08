@@ -1,0 +1,54 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+
+    # configure Environment
+    - name: create a new EC2 key pair, returns generated private key
+      ec2_key:
+        name: keypair
+        region: us-east-1
+      register: keyinfo
+
+    - name: save keypair.pem
+      copy:
+        content: "{{keyinfo.key.private_key}}"
+        dest: ./keypair.pem
+      when: keyinfo.changed
+      
+    - name: create EC2 Instance
+      ec2:
+        key_name: keypair
+        instance_type: t2.micro
+        image: ami-0a6b2839d44d781b2
+        region: us-east-1
+        wait: yes
+        exact_count: 1
+        instance_tags:
+          Name: Build
+          db: postgres
+        count_tag:
+          Name: Build
+          db: postgres
+
+    - name: create EC2 Instance
+      ec2:
+        key_name: keypair
+        instance_type: t2.micro
+        image: ami-0a6b2839d44d781b2
+        region: us-east-1
+        wait: yes
+        exact_count: 1
+        instance_tags:
+          Name: prod
+          db: postgres
+        count_tag:
+          Name: prod
+          db: postgres
+
+    #- name: Build artifact
+    #  import_tasks: build.yaml
+
+    #- name: Deploy artifact
+    #  import_tasks: prod.yaml
+

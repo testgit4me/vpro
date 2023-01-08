@@ -1,0 +1,4 @@
+---
+- name: change host names
+  hosts: all
+  

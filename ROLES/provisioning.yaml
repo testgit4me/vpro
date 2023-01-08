@@ -1,0 +1,21 @@
+---
+- name: provision systems
+  hosts: all
+  become: yes
+  roles:
+    - role: geerlingguy.java
+    - role: post-install
+      vars:
+        ntp0: 0.usa.pool.ntp.org
+        ntp1: 1.usa.pool.ntp.org
+        ntp2: 2.usa.pool.ntp.org
+        ntp3: 3.usa.pool.ntp.org
+
+
+
+
+
+
+
+
+

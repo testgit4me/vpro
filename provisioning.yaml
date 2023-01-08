@@ -1,0 +1,127 @@
+---
+- name: provision systems
+  hosts: all
+  become: yes
+  vars:
+    ntpconf: /etc/ntp.conf
+
+  tasks:
+  #- name: update OS
+   # command: yum update -y
+    # when: ansible_distribution == "CentOS"
+
+  - name: install ntp on centos
+    yum:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+    loop:
+      - wget
+      - ntp
+      - mc
+
+  - name: install ntp on ubuntu
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+    loop:
+      - wget
+      - tmux
+      - ntp
+
+  - name: start ntp service on centos
+    service:
+      name: ntpd
+      state: started
+      enabled: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: start ntp service on ubuntu
+    service:
+      name: ntp
+      state: started
+      enabled: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: create devopsteam groups
+    group:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - devopsteam
+      - group1
+      - group2
+      - devops
+
+  - name: create users
+    user:
+      name: devops
+      state: present
+      groups: devopsteam
+
+  - name: create users via variabless
+    user:
+      name: "{{ item }}"
+      state: present
+      groups: devops
+    loop: "{{user_list}}"
+
+  - name: Banner file to /etc/motd
+    copy:
+      content: "This {{ansible_distribution}} node is managed by Ansible. \n"
+      dest: /etc/motd
+
+  - name: deploy ntp_redhat.conf.j2 file to redhat
+    template:
+      src: templates/ntp_redhat.conf.j2
+      dest: "{{ntpconf}}"
+    when: ansible_distribution == "CentOS"
+    notify:
+      - restart ntp service on centos
+
+  - name: deploy ntp_debian.conf.j2 file to debian
+    template:
+      src: templates/ntp_debian.conf.j2
+      dest: "{{ ntpconf }}"
+    when: ansible_distribution == "Ubuntu"
+    notify:
+      - restart ntp service on ubuntu
+
+  - name: create directory
+    file:
+      path: /opt/ansible_folder
+      state: directory
+      mode: 0777
+
+  - name: deploy dev file
+    copy:
+      src: files/dev.txt
+      dest: /opt/ansible_folder/dev.txt
+
+  - name: create touch file
+    file:
+      path: /opt/ansible_folder/ansible_file
+      state: touch
+
+  handlers:
+  - name: restart ntp service on centos
+    service:
+      name: ntpd
+      state: restarted
+      enabled: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: restart ntp service on ubuntu
+    service:
+      name: ntp
+      state: restarted
+      enabled: yes
+    when: ansible_distribution == "Ubuntu"
+
+
+
+
+

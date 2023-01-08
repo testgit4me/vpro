@@ -1,0 +1,31 @@
+---
+- name: build server
+  hosts: build
+  become: yes
+
+  tasks:
+  - name: install git, java and maven
+    apt:
+      name: "{{ item }}"
+      state: present
+      update_cache: yes
+    loop:
+      - git
+      - openjdk-8-jdk
+      - maven
+
+  - name: Clone a github repository
+    git:
+      clone: yes
+      repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+      dest: /opt/boxfuse
+
+  - name: create artifact
+    command: mvn -f /opt/boxfuse/pom.xml package
+
+  - name: fetch artifact
+    fetch:
+      src: /opt/boxfuse/target/hello-1.0.war
+      dest: ./
+      flat: yes
+  

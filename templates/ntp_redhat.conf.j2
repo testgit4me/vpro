@@ -1,0 +1,15 @@
+driftfile /var/lib/ntp/drift
+### test handlers
+restrict 127.0.0.1
+restrict ::1
+
+server {{ntp0}} iburst
+server {{ntp1}} iburst
+server {{ntp2}} iburst
+server {{ntp3}} iburst
+
+includefile /etc/ntp/crypto/pw
+
+keys /etc/ntp/keys
+
+disable monitor

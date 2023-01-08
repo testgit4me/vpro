@@ -1,0 +1,356 @@
+project - tasks
+
+1.ansible - ubuntu
+
+1.web01 - centos
+2.web02 - ubuntu
+3.DB01 - centos
+
+ssh-key.pem
+inventory
+playbook-web.yaml
+ansible.cfg
+
+******************************************
+inventory file
+
+web01 ansible_host=172.31.87.251
+web02 ansible_host=172.31.83.5
+db01 ansible_host=172.31.89.252
+
+[web_srv]
+web01
+web02
+
+[db_srv]
+db01
+
+[dc01:children]
+web_srv
+db_srv
+
+[dc01:vars]
+ansible_user=centos
+ansible_ssh_private_key_file=ssh-key.pem 
+
+******************************************
+ansible.cfg
+
+[defaults]
+host_key_checking = False
+inventory = ./inventory
+forks = 5
+log_path = /var/log/ansible.log
+
+[privilege_escalation]
+become=True
+become_method=sudo
+#become_user=root
+become_ask_pass=False
+
+grep host_key /etc/ansible/ansible.cfg
+
+******************************************
+
+python -> horizontal syntacsis
+json -> vertical syntacsys
+yaml -> ansible
+
+Idempotent = STATE are the same
+SOURCE AND DESTINATION IS THE SAME, NO CHANGE HAPPENED
+
+ansible -> httpd/webserver = web01,web02
+
+********************************************************
+
+# python
+{ "devops": ["aws", "jenkins", "docker", "ansible"], "developement": ["java", "nodejs", "C#"], "ansible_facts": {"python: /usr/bin, 'test1: 123'"}}
+
+# json
+{
+ "devops":
+  [
+   "aws",
+   "jenkins",
+   "docker",
+   "ansible"
+  ],
+
+ "developement":
+  [
+   "java",
+   'nodejs',
+   'C#'
+  ],
+
+ "ansible_facts":
+ {
+   "python": "/usr/bin",
+   "user": "admin",
+   "versio": 777
+ }
+}
+
+# YAML
+devops:
+- aws
+- jenkins
+- docker
+- ansible
+
+developement:
+- java
+- nodejs
+- C#
+
+ansible_facts:
+   python: "/usr/bin"
+   user: admin
+   version: 777
+
+********************************************************
+playbook
+---
+- name: install web server
+  hosts: websrv
+  become: yes
+
+  tasks:
+  - name: install apache
+    yum:
+      name: httpd
+      state: present
+  - name: start & enable HTTPD
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: copy index.html file
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+
+- name: install SQL Server
+  hosts: dbsrv
+  become: yes
+
+  tasks:
+  - name: install maria DB
+    yum:
+      name: mariadb-server
+      state: present
+  - name: start & enable service
+    service:
+      name: mariadb
+      state: started
+      enabled: yes
+
+
+********************************************************
+ansible -i inventory -m ping db01
+ansible -i inventory -m ping all
+ansible -i inventory -m ping web_srv
+
+ansible-playbook -i inventory control.yaml --syntax-check
+ansible-playbook -i inventory control.yaml -C
+
+ansible-playbook -i inventory control.yaml
+ansible-playbook -i inventory control.yaml -vv  -> troubleshooting
+ansible-playbook -i inventory control.yaml -vvv
+
+ansible all -a "uptime"
+ansible-playbook -e dbname=cliUsers playbook.yaml
+ansible -m setup web01
+
+********************************************************
+
+26283 1773073
+
+ansible.cfg
+
+[defaults]
+host_key_checking = False
+inventory = ./inventory
+forks = 5
+log_path = /var/log/ansible.log
+
+[privilege_escalation]
+become=True
+become_method=sudo
+become_ask_pass=False
+
+chown ubuntu:ubuntu /var/log/ansible.log
+
+******************************************
+
+Moduls:
+- user
+- debug
+- yum
+- service
+- copy
+- maria-db
+- file
+
+
+******************
+string -> list -> dictionary
+
+******************************************
+VARIABLES:
+
+playbook -> host_vars/hostname -> group_vars/gropename -> CLI 
+
+group_vars/all:
+dbname: ALLWebDataBase
+dbuser: allwebusers
+dbpass: 12345
+
+group_vars/websrv
+hosts_vars/web02
+
+---
+- name: learning facts
+  hosts: all
+  tasks:
+    - debug:
+        var: ansible_distribution
+    - debug:
+        var: ansible_processor[2]
+    - debug:
+        var: ansible_memory_mb.real.free
+    - debug:
+        msg: "DB name is {{dbname}}"
+    - name: create a new database with name 'accounts'
+        mysql_db:
+         name: "{{dbname}}"
+         state: present
+
+******************************************
+
+ansible node:
+visudo
+
+******************************************
+
+SQL Server
+
+install sql
+start service
+create DB 
+create user
+
+******************************************
+0.0 uyrengen zatti qollanip baslaw kk uje
+0.1 git commit/push
+1.1 manual ustanovka
+1.2 ustanovka via BASH
+1.3 ustanovka via Ansible
+1.4 ustanovka via Python
+2. jenkins
+3. docker image qilasan
+4. kuberge jiberiw
+
+******************************************
+
+NTP install: systema centos/ubuntu
+1.1 manual ustanovka
+1.2 ustanovka via BASH
+1.3 ustanovka via Ansible
+1.4 ustanovka via Python
+
+- loop
+- update_cache: yes
+- added group via modul
+- added 4 user via model with loop
+- added 4 user via model with loop using group_vars/all variables
+
+-----------------
+copy content modul/motd
+template modul, j2 fail, ntp_redhat.conf, ntp_debian.conf
+handler (notify)
+
+
+tell about ansible in interview process - via storytelling/scenarious
+- pipeline -> modules
+- inventory file
+- ansible config file
+- private key
+
+
+*********************
+-roles
+-aws modul 
+
+**********************
+tree
+var: ntp path jarattiq
+vim files/dev.txt
+deploy dev file
+
+mkdir roles -> ansible-galaxy init post-install
+
+<<<<<<< HEAD
+moded all the variabless -> defaults/main.yaml
+modev tasks to tasks
+moved handlers to hadlers
+modev files to files
+modev templates to template
+
+cleaned provision.yaml and added roles
+cleaned parent directory names that no need when you use roles
+
+galaxy ansible
+ntp
+nrpe server
+java - download it -> ansible-galaxy install geerlingguy.java
+
+register = this is some information about a task
+*************************************************
+ansadmin -> aws iam
+nano .bashrc 
+source .bashrc 
+ec2_key module � Create or delete an EC2 key pair
+pip
+boto3
+=======
+**************************************************
+0.ansible-control - ubuntu - ustanovka ansible
+
+1. zborka(centos node)  
+1.1 - simple index file
+2.1 prod (centos node) - ustanovaka gninx
+
+-----------------
+
+1. zborka(centos node) - ustanova maven, 
+1.2 нужен java-app
+2.2 prod (centos node) - ustanovaka tomcat
+-------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> 110c60f10b4f72bd8aec4cf32e97235d4e48b319
+
+
+
+
+
+
