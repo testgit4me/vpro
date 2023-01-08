@@ -5,3 +5,4 @@ ss -tpln
 
 bash:
 find /opt -name *jenkins*
+ssh -v user@dt01
