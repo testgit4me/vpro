@@ -6,3 +6,5 @@ ss -tpln
 bash:
 find /opt -name *jenkins*
 ssh -v user@dt01
+sed -i 's/db01:3306/vprofile-rds.amazonaws.com:3306/' src/main/resources/application.properties
+tar xzf apache-maven-3.5.4-bin.tar.gz
