@@ -1,9 +1,9 @@
 1)
 ss -tpln
 du -sh containers (check the size of directory)
-hostname -I
-curl -4 icanhazip.com
-ps -ef
+ps -ef (view all the running processes in the linux system)
+hostname -I (identify private IPs)
+curl -4 icanhazip.com (identify pulic IP)
 
 2)
 find /opt -name *jenkins*
