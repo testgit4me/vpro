@@ -7,8 +7,8 @@ docker rm web01 -> removes container
 docker rmi web01 -> removes image
 
 docker pull nginx
-docker run --name web01 -p 8080:80 -d nginx -> first container
-docker run --name web02 -P -d nginx -> second container
+docker run --name web01 -p 8080:80 -d nginx => first container
+docker run --name web02 -P -d nginx => second container
 docker exec -it web02 /bin/bash
 docker start/stop/restart web02
 
