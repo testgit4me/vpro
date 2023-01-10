@@ -1,5 +1,6 @@
 FROM ubuntu
 LABEL "auhtor"="devops engineer"
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install git -y
 RUN apt install apache2 -y
 CMD ["/usr/sbin/apache2ctl", "-D", "FORGROUND"]
