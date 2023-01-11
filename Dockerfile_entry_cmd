@@ -1,3 +1,14 @@
+
+FROM ubuntu:latest
+CMD ["echo", "hello"]
+
+************************
+
+FROM ubuntu:latest
+ENTRYPOINT ["echo"]
+
+************************
+
 FROM ubuntu:latest
 ENTRYPOINT ["echo"]
 cmd ["hello"]
