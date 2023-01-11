@@ -40,11 +40,12 @@ docker images
 docker login
 docker push mrdockernnm/admin:v2
 
+
 DOCKER VOLUME:
 docker volume create SQLDB
 docker volume ls
 ll /var/lib/docker/volumes
-
+docker run -v SQLDB:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mysql3 -P mysql
 
 
 
