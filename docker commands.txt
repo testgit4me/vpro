@@ -1,3 +1,5 @@
+git clone -b docker https://github.com/testgit4me/vpro.git
+
 docker ps
 docker ps -a
 docker images
@@ -40,7 +42,6 @@ docker images
 docker login
 docker push mrdockernnm/admin:v2
 
-
 DOCKER VOLUME:
 docker volume create SQLDB
 docker volume ls
@@ -49,7 +50,10 @@ docker run -v SQLDB:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mys
 docker run -v /home/ubuntu/vpro/mine:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mysql02 -P mysql:v3 => bind any folder
 
 DOCKER COMPOSE:
-docker compose up
+docker-compose up
+docker-compose up -d
+docker-compose down
+docker compose ps
 
 
 
