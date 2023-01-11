@@ -48,6 +48,9 @@ ll /var/lib/docker/volumes
 docker run -v SQLDB:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mysql01 -P mysql:v3 => attach docker volume
 docker run -v /home/ubuntu/vpro/mine:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mysql02 -P mysql:v3 => bind any folder
 
+DOCKER COMPOSE:
+docker compose up
+
 
 
 

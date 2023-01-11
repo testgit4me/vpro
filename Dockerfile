@@ -1,4 +1,3 @@
 FROM mysql:5.7
-#VOLUME /etc/mysql
-
-# /var/log/
+VOLUME /etc/mysql
+VOLUME /var/log/
