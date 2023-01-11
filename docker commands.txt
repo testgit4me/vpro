@@ -5,7 +5,7 @@ docker images
 docker stop we01 -> stop container
 docker rm web01 -> removes container
 docker rmi web01 -> removes image
- docker system prune => deletes all stopped containers
+docker system prune => deletes all stopped containers
 
 docker pull nginx
 docker run --name web01 -p 8080:80 -d nginx => first container
@@ -39,3 +39,24 @@ HOST AN IMAGE on DOCKER HUB => https://hub.docker.com/u/mrdockernnm
 docker images
 docker login
 docker push mrdockernnm/admin:v2
+
+DOCKER VOLUME:
+docker volume create SQLDB
+docker volume ls
+ll /var/lib/docker/volumes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
