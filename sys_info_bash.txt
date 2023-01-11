@@ -18,3 +18,5 @@ tar czvf nano.tar.gz nano/*
 tar -xvf archive.tar
 tar -tf archive.tar
 
+ls -R
+
