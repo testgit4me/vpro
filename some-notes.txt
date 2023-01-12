@@ -1,0 +1,2 @@
+1.password authentication enabled for ssh
+2.ssh key authentication for ssh (password authentication is disabled)
