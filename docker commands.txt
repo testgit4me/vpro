@@ -1,0 +1,70 @@
+git clone -b docker https://github.com/testgit4me/vpro.git
+
+docker ps
+docker ps -a
+docker images
+
+docker stop we01 -> stop container
+docker rm web01 -> removes container
+docker rmi web01 -> removes image
+docker system prune => deletes all stopped containers
+
+docker pull nginx
+docker run --name web01 -p 8080:80 -d nginx => first container
+docker run --name web02 -P -d nginx => second container
+docker exec -it web02 /bin/bash
+docker start/stop/restart web02
+
+docker pull ubuntu
+docker run -it ubuntu /bin/bash
+
+docker logs web01 -> shows container logs
+docker inspect nginx (metadate of image in json format)
+
+docker pull mysql
+docker inspect mysql (shows image metadata)
+docker run --name mysql01 -P -e MYSQL_ROOT_PASSWORD=password -d mysql
+docker inspect mysql01 (shows container metadata)
+docker logs mysql01
+docker exec -it mysql01 /bin/bash (login to running mysql01 container)
+
+docker run --name mysql03 -P -v /home/ubuntu/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d mysql => bind method
+docker run --name mysql04 -P -v my-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d mysql => volume method
+docker volume ls/create
+mysql -h 172.17.0.2 -u root -padmin123
+
+CREATE DOCKER IMAGES:
+docker build -t admin:v1 .
+docker build -t mrdockernnm/admin:v2 .
+
+HOST AN IMAGE on DOCKER HUB => https://hub.docker.com/u/mrdockernnm
+docker images
+docker login
+docker push mrdockernnm/admin:v2
+
+DOCKER VOLUME:
+docker volume create SQLDB
+docker volume ls
+ll /var/lib/docker/volumes
+docker run -v SQLDB:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mysql01 -P mysql:v3 => attach docker volume
+docker run -v /home/ubuntu/vpro/mine:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mysql02 -P mysql:v3 => bind any folder
+
+DOCKER COMPOSE:
+docker-compose up
+docker-compose up -d
+docker-compose down
+docker compose ps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
