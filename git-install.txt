@@ -1,0 +1,22 @@
+git --version
+git config --list
+git config --list --show-origin
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+git config --global --list
+git init
+git add .
+git commit -m "first commit"
+git push
+git remote -v
+git branch -b Private
+git branch (lists local branches)
+git branch -a (lists all - local and remote branches)
+git checkout NewBranch
+git diff
+
+git remote rm origin (remove remote repo)
+git remote add origin ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/vpro-repo (add new repo)
+cat .git/config
+git push --all origin (push all branches)
+git clone -b vp-rem ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/vpro-repo
