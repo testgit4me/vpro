@@ -5,4 +5,6 @@ apache
 gninx
 tomcat
 php
-LAMP
+wordpress
+LAMP (linux, apache, mysql, php)
+nodejs
