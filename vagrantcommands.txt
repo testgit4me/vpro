@@ -1,3 +1,5 @@
 vagrant init
 vagrant up
 vagrant ssh
+
+vagrant init ubuntu/bionic64

@@ -8,3 +8,14 @@ php
 wordpress
 LAMP (linux, apache, mysql, php)
 nodejs
+
+then containerise all of them using official images:
+mysql
+mariadb
+apache
+gninx
+tomcat
+php
+wordpress
+LAMP (linux, apache, mysql, php)
+nodejs
