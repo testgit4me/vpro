@@ -1,0 +1,6 @@
+install ubuntu locally
+vagrant up
+install docker
+add vagrant user to docker group
+use intelljde
+create docker repos: vprofileapp, vprofileweb, vprofiledb

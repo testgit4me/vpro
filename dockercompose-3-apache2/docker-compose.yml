@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  apache-web:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - .:/var/www
+      - apache-logs:/var/log/apache2
+      - apache-etc:/etc/apache2
+    
+volumes:
+  apache-web:
+  apache-logs:
+  apache-etc:

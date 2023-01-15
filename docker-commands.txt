@@ -50,10 +50,14 @@ docker run -v SQLDB:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mys
 docker run -v /home/ubuntu/vpro/mine:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=admin123 -d --name mysql02 -P mysql:v3 => bind any folder
 
 DOCKER COMPOSE:
-docker-compose up
+docker-compose build -> created images first
 docker-compose up -d
-docker-compose down
-docker compose ps
+docker-compose ps 
+docker-compose ps -a
+docker-compose stop
+docker-compose down -> stops && removes containers
+
+curl -4 icanhazip.com
 
 
 
