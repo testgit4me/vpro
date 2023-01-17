@@ -1,0 +1,7 @@
+#!/bin/bash
+sudo adduser sammy
+sudo usermod -aG sudo sammy
+# ufw app list
+sudo ufw allow OpenSSH
+sudo ufw enable
+sudo rsync --archive --chown=sammy:sammy /home/ubuntu/.ssh /home/sammy
