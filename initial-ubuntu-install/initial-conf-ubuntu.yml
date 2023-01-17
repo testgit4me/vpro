@@ -3,7 +3,7 @@
   hosts: localhost
   become: yes
   tasks:
-    - name: create new user
+    - name: create a new user
       user:
         name: sammy
         shell: bin/bash
