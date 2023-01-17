@@ -1,0 +1,18 @@
+---
+- name: initial ubuntu configuration with ansible
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: create new user
+      user:
+        name: sammy
+        shell: bin/bash
+        state: present
+        groups: sudo
+        home: /home/sammy
+        password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
+
+
+
+
+  # mkpasswd --method=sha-512
