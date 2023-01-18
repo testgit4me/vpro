@@ -2,17 +2,22 @@
 - name: initial ubuntu configuration with ansible
   hosts: localhost
   become: yes
+  vars:
+    # password: '`mkpasswd --method=sha-512 123`'
+    user: sammy
   tasks:
     - name: create a new user
       user:
-        name: sammy
-        shell: bin/bash
+        name: "{{ user }}"
         state: present
-        groups: sudo
-        home: /home/sammy
-        password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
+        home: /home/{{ user }}
+        shell: /bin/bash
+        # password: "{{ mkpasswd --method=sha-512 123 }}"
+        # password: "{{ upassword | string | password_hash('sha512' }}"
+        password: $6$.t1SvAeq/JW$mNkrYUpid.Vc32J9E.AcgptlZ/Wr8O2RvG81EyRNF05blCo783jXP2KFYKzUlq3SYlVwg2gFwsfxG4JgQpj7S.
 
 
 
-
-  # mkpasswd --method=sha-512
+# sudo apt install whois
+# mkpasswd --method=sha-512 123 (123 - is password)
+# openssl rand -base64 16
