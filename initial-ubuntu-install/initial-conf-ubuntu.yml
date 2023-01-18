@@ -1,5 +1,5 @@
 ---
-- name: initial ubuntu configuration with ansible
+- name: initial ubuntu configuration using ansible
   hosts: localhost
   become: yes
   vars:
