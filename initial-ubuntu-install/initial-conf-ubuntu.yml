@@ -37,9 +37,6 @@
 
       #sudo rsync --archive --chown=sammy:sammy /home/vagrant/.ssh /home/sammy
 
+      # ansible, jenkins, docker, kuber
 
-
-
-
-
-  # mkpasswd --method=sha-512
+      # mkpasswd --method=sha-512
