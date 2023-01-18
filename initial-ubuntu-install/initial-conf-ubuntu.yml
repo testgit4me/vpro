@@ -2,15 +2,32 @@
 - name: initial ubuntu configuration with ansible
   hosts: localhost
   become: yes
+  vars:
+    - username: test1
   tasks:
     - name: create a new user
       user:
-        name: sammy
-        shell: bin/bash
+        name: "{{username}}"
         state: present
         groups: sudo
-        home: /home/sammy
+        home: /home/{{username}}
+        shell: /bin/bash
         password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
+
+    - name: ufw enabled
+      ufw:
+        state: enabled
+        policy: deny
+        logging: on
+
+    - name: ufw allow rule
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - 22
+
 
 
 
