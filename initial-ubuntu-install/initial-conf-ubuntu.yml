@@ -30,8 +30,8 @@
 
     - name: transfer public-key to sammy user
       copy:
-        src: /home/vagrant/.ssh
-        dest: /home/sammy
+        src: /home/ubuntu/.ssh
+        dest: /home/{{username}}
         owner: "{{username}}"
 
       #sudo rsync --archive --chown=sammy:sammy /home/vagrant/.ssh /home/sammy
