@@ -33,6 +33,7 @@
         src: /home/ubuntu/.ssh
         dest: /home/{{username}}
         owner: "{{username}}"
+        group: "{{username}}"
 
       #sudo rsync --archive --chown=sammy:sammy /home/vagrant/.ssh /home/sammy
 
