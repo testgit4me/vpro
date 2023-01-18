@@ -28,6 +28,15 @@
       loop:
         - 22
 
+    - name: transfer public-key to sammy user
+      copy:
+        src: /home/vagrant/.ssh
+        dest: /home/sammy
+        owner: "{{username}}"
+
+      #sudo rsync --archive --chown=sammy:sammy /home/vagrant/.ssh /home/sammy
+
+
 
 
 
