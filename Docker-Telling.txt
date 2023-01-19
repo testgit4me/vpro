@@ -20,4 +20,7 @@ we can connect volumes to save or preserve the data out of the containers. it al
 windows or linux, as the process running on container uses host OS kernel, we only can run windows containers on windows OS as the process needs windows kernel, linux containers on linux OSs as it also need linux kernel to be run.
 
 what is OS kernel?
+- confuses with bios, OS
+- interacts hardware with hardware components like cpu, memory, usb and others
+- between user applicaiton and hardware
 what is namespace && cgroup
