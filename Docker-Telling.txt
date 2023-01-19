@@ -1,4 +1,7 @@
 What is containers?
+container actually is a process/service that is running in isolated environment. 
+- tomcat and nginx image
+
 let's imagine that we have munltiple processes running in the same OS but isolated, like VMs which has its own IP/Port numbers, directories but without OSs, this is container.
 a container is process running isolated in directory with its own namespce, cgroup, with neccesary bin/lib files in this directory
 we can treat a container as standard unit of software that packges up code, its depencies but without OS. one of the benefits of contaianers that it has not OS, so its light weght they just processes, so it is easy for shipment and deployment.
@@ -21,6 +24,25 @@ windows or linux, as the process running on container uses host OS kernel, we on
 
 what is OS kernel?
 - confuses with bios, OS
-- interacts hardware with hardware components like cpu, memory, usb and others
+- interacts software applicatinon with hardware/hardware components like cpu, memory, usb and others
 - between user applicaiton and hardware
+
 what is namespace && cgroup
+
+What's Docker images?
+actually this is stopped container, it is an archive
+consists of multiple layers, each layer will be some data, 
+when you building your own image, lets say we install package, some appl, git, it will create a layer, create directory is an other layer, so all the layers will be on read only mode
+containers run from the image, directly connected to it, cannot remove image once its container running
+Images are called as repositories in registries
+tomcat images are called as tomcat repositories in registry, 
+docker hub is regitry, 
+images becomes containers when we run them on docekr engine
+docker pull, docker run
+
+Docker registries
+- cloud based - dockerhub, google container registry, amazon ECR
+- local registries - nexus3+ , jfrog artifactory
+
+Docker commnds:
+docker pull, run/stop, images, ps/ps -a, execute, log/inspect, rm/rmi
