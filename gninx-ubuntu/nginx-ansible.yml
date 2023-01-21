@@ -22,12 +22,6 @@
         state: started
         enabled: yes
 
-    - name: download template & unarchieve
-      unarchive:
-        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
-        dest: /opt
-        remote_src: yes
-
     - name: create web directory
       file:
         path: /var/www/devops.me
@@ -36,20 +30,15 @@
         owner: "{{username}}"
         group: "{{username}}"
 
-#    - name: create web directory
-#      file:
-#        - path: /var/www/devops.me
-#          state: directory
-#          mode: '0755'
-#          recurse: yes
-#          owner: "{{USER}}"
-#          group: "{{USER}}"
-#
-#
-#
-#    - name: copy web files to devops.me directory
-#      copy:
-#        src: /opt/2119_gymso_fitness/*
-#        dest: var/www/devops.me
+    - name: download template & unarchieve
+      unarchive:
+        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+        dest: /opt
+        remote_src: yes
+
+    - name: copy web files to devops.me directory
+      copy:
+        src: /opt/2119_gymso_fitness/*
+        dest: var/www/devops.me
 
 
