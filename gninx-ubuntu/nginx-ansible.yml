@@ -1,0 +1,45 @@
+---
+- name: Install nginx using ansible
+  hosts: localhost
+  become: yes
+  vars:
+    USER: ubuntu
+  tasks:
+    - name: install packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - nginx
+        - mc
+        - wget
+        - unzip
+
+    - name: start & enable nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: create web directory
+      file:
+        - path: /var/www/devops.me
+          state: directory
+          mode: '0755'
+          recurse: yes
+          owner: "{{USER}}"
+          group: "{{USER}}"
+
+    - name: download template & unarchieve
+      unarchive:
+        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+        dest: /opt
+        remote_src: yes
+
+    - name: copy web files to devops.me directory
+      copy:
+        src: /opt/2119_gymso_fitness/*
+        dest: var/www/devops.me
+
+
