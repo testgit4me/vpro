@@ -61,6 +61,13 @@
         regexp: "server_names_hash_bucket_size"
         line: "server_names_hash_bucket_size 64;"
 
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+
+
+
 
 
 
