@@ -45,7 +45,7 @@
 
     - name: copy conf file to sites-available
       copy:
-        src: sites_conf.j2
+        src: devops.me
         dest: /etc/nginx/sites-available/devops.me
         force: true
 
