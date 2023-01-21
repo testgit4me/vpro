@@ -29,8 +29,8 @@
         path: /var/www/{{DOMAIN}}
         state: directory
         mode: '0755'
-        owner: {{username}}
-        group: {{username}}
+        owner: "{{username}}"
+        group: "{{username}}"
 
     - name: download template & unarchieve
       unarchive:
