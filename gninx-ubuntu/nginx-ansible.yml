@@ -46,12 +46,12 @@
     - name: copy conf file to sites-available
       copy:
         src: sites_conf.j2
-        dest: /etc/nginx/sites-available/devops.io
+        dest: /etc/nginx/sites-available/devops.me
 
     - name: create symbolic file
       copy:
-        src: /etc/nginx/sites-available/devops.io
-        dest: /etc/nginx/sites-enabled/
+        src: /etc/nginx/sites-available/devops.me
+        dest: /etc/nginx/sites-enabled/devops.me
         state: link
 
 
