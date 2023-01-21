@@ -1,3 +1,5 @@
+1) Project
+
 #/bin/bash 
 sudo apt update
 sudo apt install mc wget nginx unzip -y
@@ -16,43 +18,45 @@ sudo systemctl restart nginx
 # mkdir /var/www/html/web1.webdock.io
 # mkdir /var/www/html/web2.webdock.io
 
-#/bin/bash
+2) Project
+
+#/bin/bash 
 sudo apt update
 sudo apt install mc wget nginx unzip -y
 
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
-# sudo mkdir -p /var/www/devops/html
-# sudo chown -R $USER:$USER /var/www/devops/html
-# sudo chmod -R 755 /var/www/devops/html
+sudo mkdir -p /var/www/devops.io
+sudo chown -R $USER:$USER /var/www/devops.io
+sudo chmod -R 755 /var/www/devops.io
 
 cd /opt
-sudo wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency.zip
-sudo unzip -o templatemo_582_tale_seo_agency.zip
-sudo cp -r templatemo_582_tale_seo_agency/* /var/www/html
+sudo wget https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+sudo unzip -o 2119_gymso_fitness.zip
+sudo cp -r 2119_gymso_fitness/* /var/www/devops.io
 
-# sudo rsync --archive --chown=$USER:$USER templatemo_582_tale_seo_agency/* /var/www/devops/html
+# sudo rsync --archive --chown=$USER:$USER templatemo_582_tale_seo_agency/* /var/www/devops.io
 
-# cat <<EOF > /opt/devops
-# server {
-#         listen 90;
-#         listen [::]:90;
+cat <<EOF > devops.io
+server {
+        listen 90;
+        listen [::]:90;
 
-#         root /var/www/devops/html;
-#         index index.html index.htm index.nginx-debian.html;
+        root /var/www/devops.io;
+        index index.html index.htm index.nginx-debian.html;
 
-#         server_name devops www.devops;
+        server_name devops.io www.devops.io;
 
-#         location / {
-#                 try_files $uri $uri/ =404;
-#         }
-# }
-# EOF
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+EOF
 
-# sudo cp devops /etc/nginx/sites-available/devops
-# sudo rsync devops /etc/nginx/sites-available
-# sudo ln -s /etc/nginx/sites-available/devops /etc/nginx/sites-enabled/
+sudo cp devops.io /etc/nginx/sites-available/devops.io
+# sudo rsync devops.io /etc/nginx/sites-available
+sudo ln -s /etc/nginx/sites-available/devops.io /etc/nginx/sites-enabled/
 sudo sed -i -e 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
 
 sudo systemctl start nginx
