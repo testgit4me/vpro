@@ -3,7 +3,7 @@
   hosts: localhost
   become: yes
   vars:
-    USER: ubuntu
+    username: ubuntu
   tasks:
     - name: install packages
       apt:
@@ -27,6 +27,14 @@
         src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
         dest: /opt
         remote_src: yes
+
+    - name: create web directory
+      file:
+        path: /var/www/devops.me
+        state: directory
+        mode: '0755'
+        owner: "{{username}}"
+        group: "{{username}}"
 
 #    - name: create web directory
 #      file:
