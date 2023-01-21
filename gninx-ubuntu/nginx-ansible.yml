@@ -48,6 +48,12 @@
         src: sites_conf.j2
         dest: /etc/nginx/sites-available/devops.io
 
+    - name: create symbolic file
+      copy:
+        src: /etc/nginx/sites-available/devops.io
+        dest: /etc/nginx/sites-enabled/
+        state: link
+
 
 
 
