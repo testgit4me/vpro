@@ -22,6 +22,12 @@
         state: started
         enabled: yes
 
+    - name: download template & unarchieve
+      unarchive:
+        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+        dest: /opt
+        remote_src: yes
+
     - name: create web directory
       file:
         - path: /var/www/devops.me
@@ -31,11 +37,7 @@
           owner: "{{USER}}"
           group: "{{USER}}"
 
-    - name: download template & unarchieve
-      unarchive:
-        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
-        dest: /opt
-        remote_src: yes
+
 
     - name: copy web files to devops.me directory
       copy:
