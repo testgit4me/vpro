@@ -5,7 +5,6 @@
 
   vars:
     username: ubuntu
-    DOMAIN: devops.io
   tasks:
     - name: install packages
       apt:
@@ -26,11 +25,11 @@
 
     - name: create web directory
       file:
-        path: /var/www/{{DOMAIN}}
+        path: /var/www/devops.io
         state: directory
         mode: '0755'
-        owner: "{{username}}"
-        group: "{{username}}"
+        owner: ubuntu
+        group: ubuntu
 
     - name: download template & unarchieve
       unarchive:
@@ -41,18 +40,18 @@
     - name: copy web files to devops.me directory
       synchronize:
         src: /opt/2119_gymso_fitness/
-        dest: /var/www/{{DOMAIN}}/
+        dest: /var/www/devops.io/
       delegate_to: localhost
 
     - name: copy conf file to sites-available
       copy:
-        src: {{DOMAIN}}
-        dest: /etc/nginx/sites-available/{{DOMAIN}}
+        src: devops.io
+        dest: /etc/nginx/sites-available/devops.io
 
     - name: create symbolic file
       file:
-        src: /etc/nginx/sites-available/{{DOMAIN}}
-        dest: /etc/nginx/sites-enabled/{{DOMAIN}}
+        src: /etc/nginx/sites-available/devops.io
+        dest: /etc/nginx/sites-enabled/devops.io
         state: link
 
     - name: modify nginx.conf file
