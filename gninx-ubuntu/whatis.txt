@@ -1,0 +1,99 @@
+#!/bin/bash
+sudo apt update
+sudo apt install mc -y
+sudo apt install nginx -y
+
+sudo mkdir -p /var/www/devops/html
+sudo chown -R $USER:$USER /var/www/devops/html
+sudo chmod -R 755 /var/www/devops/html
+
+cd /opt
+sudo wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency.zip
+sudo unzip templatemo_582_tale_seo_agency.zip
+sudo rsync --archive --chown=$USER:$USER templatemo_582_tale_seo_agency/* /var/www/devops/html
+
+cat <<EOF > /opt/devops
+server {
+        listen 90;
+        listen [::]:90;
+
+        root /var/www/devops/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name devops www.devops;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+EOF
+
+# sudo cp devops /etc/nginx/sites-available/devops
+sudo rsync devops /etc/nginx/sites-available
+sudo ln -s /etc/nginx/sites-available/devops /etc/nginx/sites-enabled/
+sudo sed -i -e 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+
+sudo ufw allow 80
+sudo ufw allow 22
+sudo ufw allow 90
+sudo ufw enable
+
+# END CODE
+*************************************
+
+curl -4 icanhazip.com
+sudo apt install net-tools
+sudo apt install nmap
+
+display open ports by checking for listening sockets:
+netstat -tpln
+ss -tpln
+
+Ensure that port 4000 is not used:
+netstat -na | grep :4000 
+ss -na | grep :4000 
+
+Test the Newly Opened Port for TCP Connections:
+telnet localhost 90
+nmap localhost
+nmap localhost -p 90
+
+********************************************
+
+what is nginx?
+
+Nginx is one of the most popular web servers in the world.
+responsable for hosting some of the largest and highest sites on the internet.
+light weght choice that can be used as an web server or reverse proxy/proxy server
+
+1)ownership
+the person who created the file becomes its owner,
+usually called the owner of the file,
+
+chown $USER:$USER file.txt
+
+2)Permissions
+Read (r or 4) - vew permission. on file, open and read it, on directory, lists its content.
+write (w or 2) - edit permission. on file, modify its content. on directory, authority to add, remove, rename files stored in the directory.edit e
+Execute (x or 1) - execute permittion. be able to run the file
+
+chmod 755 file.txt
+
+-rw-rw-r--
+user|group|others
+
+
+
+
+
+
+
+
+
+
+
+

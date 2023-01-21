@@ -3,7 +3,7 @@ Container is tool , technology which allows to run processes on isolated environ
 
 lets say we have tomcat, nginx servers and we can  isolate these services using VMs, tomcat -> VM, nginx -> VM, 
 
-VM needs OS, big in size not convient for shipment and deployment, licences, support, maintance, expensive, 
+VM needs OS, licences, big in size not convient for shipment and deployment, support, maintance, expensive, 
 
 to provide high availablity need multiple VMs, so needs additional financial resources
 
