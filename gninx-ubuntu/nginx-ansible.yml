@@ -49,7 +49,7 @@
         dest: /etc/nginx/sites-available/devops.me
 
     - name: create symbolic file
-      copy:
+      file:
         src: /etc/nginx/sites-available/devops.me
         dest: /etc/nginx/sites-enabled/devops.me
         state: link
