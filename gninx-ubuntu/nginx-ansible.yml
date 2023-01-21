@@ -37,8 +37,11 @@
         remote_src: yes
 
     - name: copy web files to devops.me directory
-      copy:
-        src: /opt/2119_gymso_fitness/*
-        dest: var/www/devops.me
+      synchronize:
+        src: /opt/2119_gymso_fitness
+        dest: /var/www/devops.me
+      delegate_to: localhost
+
+
 
 
