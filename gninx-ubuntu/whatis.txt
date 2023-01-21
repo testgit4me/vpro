@@ -1,36 +1,58 @@
-#!/bin/bash
+#/bin/bash 
 sudo apt update
-sudo apt install mc -y
-sudo apt install nginx -y
+sudo apt install mc wget nginx unzip -y
+cd /opt
+sudo wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency.zip
+sudo unzip -o templatemo_582_tale_seo_agency.zip
+sudo cp -r templatemo_582_tale_seo_agency/* /var/www/html
+sudo sed -i -e 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
 
-sudo mkdir -p /var/www/devops/html
-sudo chown -R $USER:$USER /var/www/devops/html
-sudo chmod -R 755 /var/www/devops/html
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+
+*************************************
+
+# mkdir /var/www/html/web1.webdock.io
+# mkdir /var/www/html/web2.webdock.io
+
+#/bin/bash
+sudo apt update
+sudo apt install mc wget nginx unzip -y
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+# sudo mkdir -p /var/www/devops/html
+# sudo chown -R $USER:$USER /var/www/devops/html
+# sudo chmod -R 755 /var/www/devops/html
 
 cd /opt
 sudo wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency.zip
-sudo unzip templatemo_582_tale_seo_agency.zip
-sudo rsync --archive --chown=$USER:$USER templatemo_582_tale_seo_agency/* /var/www/devops/html
+sudo unzip -o templatemo_582_tale_seo_agency.zip
+sudo cp -r templatemo_582_tale_seo_agency/* /var/www/html
 
-cat <<EOF > /opt/devops
-server {
-        listen 90;
-        listen [::]:90;
+# sudo rsync --archive --chown=$USER:$USER templatemo_582_tale_seo_agency/* /var/www/devops/html
 
-        root /var/www/devops/html;
-        index index.html index.htm index.nginx-debian.html;
+# cat <<EOF > /opt/devops
+# server {
+#         listen 90;
+#         listen [::]:90;
 
-        server_name devops www.devops;
+#         root /var/www/devops/html;
+#         index index.html index.htm index.nginx-debian.html;
 
-        location / {
-                try_files $uri $uri/ =404;
-        }
-}
-EOF
+#         server_name devops www.devops;
+
+#         location / {
+#                 try_files $uri $uri/ =404;
+#         }
+# }
+# EOF
 
 # sudo cp devops /etc/nginx/sites-available/devops
-sudo rsync devops /etc/nginx/sites-available
-sudo ln -s /etc/nginx/sites-available/devops /etc/nginx/sites-enabled/
+# sudo rsync devops /etc/nginx/sites-available
+# sudo ln -s /etc/nginx/sites-available/devops /etc/nginx/sites-enabled/
 sudo sed -i -e 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
 
 sudo systemctl start nginx
@@ -42,8 +64,7 @@ sudo ufw allow 22
 sudo ufw allow 90
 sudo ufw enable
 
-# END CODE
-*************************************
+********************************************
 
 curl -4 icanhazip.com
 sudo apt install net-tools
