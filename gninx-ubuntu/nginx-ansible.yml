@@ -38,8 +38,8 @@
 
     - name: copy web files to devops.me directory
       synchronize:
-        src: /opt/2119_gymso_fitness
-        dest: /var/www/devops.me
+        src: /opt/2119_gymso_fitness/
+        dest: /var/www/devops.me/
       delegate_to: localhost
 
 
