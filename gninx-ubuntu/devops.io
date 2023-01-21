@@ -1,6 +1,6 @@
 server {
-        listen 95;
-        listen [::]:95;
+        listen 93;
+        listen [::]:93;
 
         root /var/www/devops.io;
         index index.html index.htm index.nginx-debian.html;
