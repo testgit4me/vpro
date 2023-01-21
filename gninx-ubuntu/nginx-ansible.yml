@@ -25,7 +25,7 @@
 
     - name: create web directory
       file:
-        path: /var/www/devops.me
+        path: /var/www/devops.io
         state: directory
         mode: '0755'
         owner: ubuntu
@@ -40,19 +40,18 @@
     - name: copy web files to devops.me directory
       synchronize:
         src: /opt/2119_gymso_fitness/
-        dest: /var/www/devops.me/
+        dest: /var/www/devops.io/
       delegate_to: localhost
 
     - name: copy conf file to sites-available
       copy:
-        src: devops.me
-        dest: /etc/nginx/sites-available/devops.me
-        force: true
+        src: devops.io
+        dest: /etc/nginx/sites-available/devops.io
 
     - name: create symbolic file
       file:
-        src: /etc/nginx/sites-available/devops.me
-        dest: /etc/nginx/sites-enabled/devops.me
+        src: /etc/nginx/sites-available/devops.io
+        dest: /etc/nginx/sites-enabled/devops.io
         state: link
 
     - name: modify nginx.conf file
