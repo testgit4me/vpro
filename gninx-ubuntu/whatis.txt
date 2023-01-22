@@ -70,6 +70,8 @@ sudo ufw enable
 
 ********************************************
 
+3) Commands
+
 curl -4 icanhazip.com
 sudo apt install net-tools
 sudo apt install nmap
@@ -88,6 +90,8 @@ nmap localhost
 nmap localhost -p 90
 
 ********************************************
+
+4) Notes
 
 what is nginx?
 

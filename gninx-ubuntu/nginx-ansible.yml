@@ -65,16 +65,21 @@
         name: nginx
         state: restarted
 
-#    - name: ufw allow rule
-#      ufw:
-#        rule: allow
-#        port: "{{ item }}"
-#        proto: tcp
-#      loop:
-#        - 22
-#        - 80
-#        - 90
-#        - 95
+    - name: ufw enabled
+      ufw:
+        state: enabled
+        policy: deny
+        logging: on
+
+    - name: ufw allow rule
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - 22
+        - 80
+        - 93
 
 
 
