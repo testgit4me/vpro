@@ -5,12 +5,12 @@ RUN wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
-FROM ubuntu:20.04
-RUN apt update && apt install nginx -y && rm -rf /var/www/html/*
-COPY --from=BUILD_IMAGE /opt/templatemo_582_tale_seo_agency/* /var/www/html/
-COPY nginx.conf /etc/nginx/nginx.conf
-WORKDIR /var/www/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# FROM ubuntu:20.04
+# RUN apt update && apt install nginx -y && rm -rf /var/www/html/*
+# COPY --from=BUILD_IMAGE /opt/templatemo_582_tale_seo_agency/* /var/www/html/
+# COPY nginx.conf /etc/nginx/nginx.conf
+# WORKDIR /var/www/html
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
 
 
