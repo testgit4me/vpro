@@ -5,4 +5,9 @@ services:
             context: .
         ports:
             - "88:80"
-        container_name: nginx
+        volumes:
+          - web-data: /var/www/html
+        container_name: nginx 
+
+volumes:
+  web-data:
