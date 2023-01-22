@@ -4,7 +4,7 @@ services:
         build:
             context: .
         ports:
-            - "88:80"
+            - "90:80"
         container_name: nginx
 
  
