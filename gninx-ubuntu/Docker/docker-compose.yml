@@ -6,7 +6,7 @@ services:
         ports:
             - "88:80"
         volumes:
-          - web-data: /var/www/html
+          - web-data:/var/www/html
         container_name: nginx 
 
 volumes:
