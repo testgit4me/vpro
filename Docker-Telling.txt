@@ -1,6 +1,11 @@
 What is containers?
-container actually is a process/service that is running in isolated environment. 
-- tomcat and nginx image
+Container is tool , technology which allows to run processes on isolated environment using kernel of host OS.
+
+lets say we have tomcat, nginx servers and we can  isolate these services using VMs, tomcat -> VM, nginx -> VM, 
+
+VM needs OS, licences, big in size not convient for shipment and deployment, support, maintance, expensive, 
+
+to provide high availablity need multiple VMs, so needs additional financial resources
 
 let's imagine that we have munltiple processes running in the same OS but isolated, like VMs which has its own IP/Port numbers, directories but without OSs, this is container.
 a container is process running isolated in directory with its own namespce, cgroup, with neccesary bin/lib files in this directory
@@ -11,6 +16,9 @@ Docker
 - we can call it container run time environment
 - we can run containers very easy using docker engine
 - actually is name of company who developed docker engine that allows very easy manage containers, Docker engine, it is docker run time environment, docker open source project
+
+Docker is a popular open source containerization tool used to provide a portable and consistent runtime environment for software applications, while consuming less resources than a traditional server or virtual machine. 
+Docker uses containers, isolated user-space environments that run at the operating system level and share system resources such as the kernel and the filesystem.
 
 PAAS - platform as service, is like beanstalk, we just upload our artifact and run up the service/application.
 
@@ -27,7 +35,10 @@ what is OS kernel?
 - interacts software applicatinon with hardware/hardware components like cpu, memory, usb and others
 - between user applicaiton and hardware
 
-what is namespace && cgroup
+Вопросы собеседование, Какие системы подсистемы ядра люникс использует докер при своей работе?
+1) namespace: механизм ядро люникса к-й обеспечивает изоляцию процессов друг от друга (изолирует процессы друг от друга)
+2) Cgroup - механизм ядро люникса к-й ограничивает, изолирует вычислительные ресурсы для групп процессов (ограничивает, изулировает вычислительные ресурсы для групп процессов)
+Ресурсы процессорные, сетевые, память, ресурсы ввода и вывода
 
 What's Docker images?
 actually this is stopped container, it is an archive
@@ -46,3 +57,8 @@ Docker registries
 
 Docker commnds:
 docker pull, run/stop, images, ps/ps -a, execute, log/inspect, rm/rmi
+
+
+
+
+
