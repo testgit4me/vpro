@@ -1,5 +1,8 @@
-version: '3.8'
+version: "3.8"
 services:
-  nginx: 
-    context: .
-  container_name: nginx
+    nginx:
+        build:
+            context: .
+        ports:
+            - "88:80"
+        container_name: nginx
