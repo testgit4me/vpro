@@ -4,4 +4,4 @@ services:
     context: .
   ports: 
     - "88:80"
-  container_name: nginx-v1
+  container_name: nginx
