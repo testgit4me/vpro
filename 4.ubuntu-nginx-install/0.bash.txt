@@ -1,0 +1,176 @@
+1) Project
+
+#/bin/bash 
+sudo apt update
+sudo apt install mc wget nginx unzip -y
+cd /opt
+sudo wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency.zip
+sudo unzip -o templatemo_582_tale_seo_agency.zip
+sudo cp -r templatemo_582_tale_seo_agency/* /var/www/html
+sudo sed -i -e 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+
+*************************************
+
+# mkdir /var/www/html/web1.webdock.io
+# mkdir /var/www/html/web2.webdock.io
+
+2) Project
+
+#/bin/bash 
+sudo apt update
+sudo apt install mc wget nginx unzip -y
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+sudo mkdir -p /var/www/devops.io
+sudo chown -R $USER:$USER /var/www/devops.io
+sudo chmod -R 755 /var/www/devops.io
+
+cd /opt
+sudo wget https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+sudo unzip -o 2119_gymso_fitness.zip
+sudo cp -r 2119_gymso_fitness/* /var/www/devops.io
+
+# sudo rsync --archive --chown=$USER:$USER templatemo_582_tale_seo_agency/* /var/www/devops.io
+
+cat <<EOF > devops.io
+server {
+        listen 90;
+        listen [::]:90;
+
+        root /var/www/devops.io;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name devops.io www.devops.io;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+EOF
+
+sudo cp devops.io /etc/nginx/sites-available/devops.io
+# sudo rsync devops.io /etc/nginx/sites-available
+sudo ln -s /etc/nginx/sites-available/devops.io /etc/nginx/sites-enabled/
+sudo sed -i -e 's/# server_names_hash_bucket_size/server_names_hash_bucket_size/' /etc/nginx/nginx.conf
+
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+
+sudo ufw allow 80
+sudo ufw allow 22
+sudo ufw allow 90
+sudo ufw enable
+
+********************************************
+
+3) Commands
+
+curl -4 icanhazip.com
+sudo apt install net-tools
+sudo apt install nmap
+
+display open ports by checking for listening sockets:
+netstat -tpln
+ss -tpln
+
+Ensure that port 4000 is not used:
+netstat -na | grep :4000 
+ss -na | grep :4000 
+
+Test the Newly Opened Port for TCP Connections:
+telnet localhost 90
+nmap localhost
+nmap localhost -p 90
+
+********************************************
+
+4) Notes
+
+what is nginx?
+
+Nginx is one of the most popular web servers in the world.
+responsable for hosting some of the largest and highest sites on the internet.
+light weght choice that can be used as an web server or reverse proxy/proxy server
+
+Nginx is an open source web server used for serving static or dynamic websites, reverse proxying, load balancing, and other HTTP and proxy server capabilities. 
+It was built to handle large amounts of concurrent connections, and is a popular web server used to host some of the largest and most high-traffic sites on the internet.
+
+By containerizing Nginx, it is possible to cut down on some system administration overhead. For instance, you won’t have to manage Nginx through a package manager or build it from source. The Docker container allows you to replace the whole container when a new version of Nginx is released. This way, you only need to maintain the Nginx configuration file and your content.
+
+1)ownership
+the person who created the file becomes its owner,
+usually called the owner of the file,
+
+chown $USER:$USER file.txt
+
+2)Permissions
+Read (r or 4) - vew permission. on file, open and read it, on directory, lists its content.
+write (w or 2) - edit permission. on file, modify its content. on directory, authority to add, remove, rename files stored in the directory.edit e
+Execute (x or 1) - execute permittion. be able to run the file
+
+chmod 755 file.txt
+
+-rw-rw-r--
+user|group|others
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

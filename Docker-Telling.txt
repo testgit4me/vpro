@@ -1,5 +1,5 @@
 What is containers?
-Container is tool , technology which allows to run processes on isolated environment using kernel of host OS.
+Container is tool , technology which allows to run processes on an isolated environment using kernel of host OS.
 
 lets say we have tomcat, nginx servers and we can  isolate these services using VMs, tomcat -> VM, nginx -> VM, 
 
@@ -35,7 +35,7 @@ what is OS kernel?
 - interacts software applicatinon with hardware/hardware components like cpu, memory, usb and others
 - between user applicaiton and hardware
 
-Вопросы собеседование, Какие системы подсистемы ядра люникс использует докер при своей работе?
+what os namespace && cgroup? Какие системы подсистемы ядра люникс использует докер при своей работе?
 1) namespace: механизм ядро люникса к-й обеспечивает изоляцию процессов друг от друга (изолирует процессы друг от друга)
 2) Cgroup - механизм ядро люникса к-й ограничивает, изолирует вычислительные ресурсы для групп процессов (ограничивает, изулировает вычислительные ресурсы для групп процессов)
 Ресурсы процессорные, сетевые, память, ресурсы ввода и вывода
@@ -57,6 +57,18 @@ Docker registries
 
 Docker commnds:
 docker pull, run/stop, images, ps/ps -a, execute, log/inspect, rm/rmi
+
+****************************************************************************
+
+what's docker logs and docker inspect?
+docker logs - show logs of the container
+docker pull - download images forn registry, docker hub,
+docker inspect - shows the image information , this an metadate of the image in json format
+docker run -> enrty point -> script then command from cmd,
+docker run -d, runs the container in background, detached mode,
+docker logs is used in troubleshooting purposes, it is process start, process output. 
+when smth goes wrong, we can figure out the issue with the help of docker logs command.
+for examle, docker run -d -P mysql -> in logs indicates error becouse of missing mysql root password information
 
 
 

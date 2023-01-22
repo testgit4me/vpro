@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+    nginx:
+        build:
+            context: .
+        ports:
+            - "93:80"
+        container_name: nginx
+        volumes:
+          - web-data:/var/www/html
+volumes:
+  web-data:
+
+ 
+ 

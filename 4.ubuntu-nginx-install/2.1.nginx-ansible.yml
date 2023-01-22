@@ -1,0 +1,90 @@
+---
+- name: Install nginx using ansible
+  hosts: localhost
+  become: yes
+
+  vars:
+    username: ubuntu
+  tasks:
+    - name: install packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - nginx
+        - mc
+        - wget
+        - unzip
+
+    - name: start & enable nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: create web directory
+      file:
+        path: /var/www/devops.io
+        state: directory
+        mode: '0755'
+        owner: ubuntu
+        group: ubuntu
+
+    - name: download template & unarchieve
+      unarchive:
+        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+        dest: /opt
+        remote_src: yes
+
+    - name: copy web files to devops.me directory
+      synchronize:
+        src: /opt/2119_gymso_fitness/
+        dest: /var/www/devops.io/
+      delegate_to: localhost
+
+    - name: copy conf file to sites-available
+      copy:
+        src: devops.io
+        dest: /etc/nginx/sites-available/devops.io
+
+    - name: create symbolic file
+      file:
+        src: /etc/nginx/sites-available/devops.io
+        dest: /etc/nginx/sites-enabled/devops.io
+        state: link
+
+    - name: modify nginx.conf file
+      lineinfile:
+        dest: /etc/nginx/nginx.conf
+        regexp: "server_names_hash_bucket_size"
+        line: "server_names_hash_bucket_size 64;"
+
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted
+
+    - name: ufw enabled
+      ufw:
+        state: enabled
+        policy: deny
+        logging: on
+
+    - name: ufw allow rule
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - 22
+        - 80
+        - 93
+
+
+
+
+
+
+
+
