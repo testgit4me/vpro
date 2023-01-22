@@ -99,6 +99,11 @@ Nginx is one of the most popular web servers in the world.
 responsable for hosting some of the largest and highest sites on the internet.
 light weght choice that can be used as an web server or reverse proxy/proxy server
 
+Nginx is an open source web server used for serving static or dynamic websites, reverse proxying, load balancing, and other HTTP and proxy server capabilities. 
+It was built to handle large amounts of concurrent connections, and is a popular web server used to host some of the largest and most high-traffic sites on the internet.
+
+By containerizing Nginx, it is possible to cut down on some system administration overhead. For instance, you won’t have to manage Nginx through a package manager or build it from source. The Docker container allows you to replace the whole container when a new version of Nginx is released. This way, you only need to maintain the Nginx configuration file and your content.
+
 1)ownership
 the person who created the file becomes its owner,
 usually called the owner of the file,
@@ -114,6 +119,49 @@ chmod 755 file.txt
 
 -rw-rw-r--
 user|group|others
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
