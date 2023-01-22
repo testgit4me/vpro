@@ -1,8 +1,9 @@
 FROM ubuntu:20.04 AS BUILD_IMAGE 
-RUN apt update && apt install wget unzip -y
+RUN apt update && apt install wget nginx unzip -y
 WORKDIR /opt
 RUN wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency.zip && unzip -o templatemo_582_tale_seo_agency.zip
-# RUN wget https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip && unzip -o 2119_gymso_fitness.zip
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
 # FROM ubuntu:20.04
 # RUN apt update && apt install nginx -y
@@ -12,7 +13,6 @@ RUN wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agency
 
 # VOLUME /var/www/html
 # WORKDIR /var/www/html
-# EXPOSE 80
-# CMD ["nginx", "-g", "daemon off;"]
+
 
 
