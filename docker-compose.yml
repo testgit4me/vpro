@@ -6,6 +6,8 @@ services:
     ports:
       - "80:80"
     container_name: nginx
+    volumes:
+      nginx-data:/usr/share/nginx/html
 
 volumes:
   nginx-data:
