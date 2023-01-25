@@ -102,8 +102,8 @@
     - name: Activate the swap file as a swap memory
       shell: swapon /swapfile
 
-    - name: Append configuration in /etc/fstab
-      shell: echo "\n/swapfile none swap sw 0 0" >> /etc/fstab'
+    - name: Append conf in fstab
+      shell: echo "\n/swapfile none swap sw 0 0\n" >> /etc/fstab
 
 
   handlers:
