@@ -11,8 +11,14 @@
         update_cache: yes
       notify: restarts nginx
 
+#    - name: start & enable nginx
+#      systemd:
+#        name: nginx
+#        state: started
+#        enabled: yes
+
     - name: start & enable nginx
-      systemd:
+      service:
         name: nginx
         state: started
         enabled: yes

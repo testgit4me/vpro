@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="corected to yum module">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="enable nginx">
       <change beforePath="$PROJECT_DIR$/ansible-centos-nginx.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible-centos-nginx.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674639022409</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="enable nginx">
+      <created>1674639429960</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1674639429960</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -113,6 +119,7 @@
     <MESSAGE value="corrected ansible syntax" />
     <MESSAGE value="corrected handlers syntax" />
     <MESSAGE value="corected to yum module" />
-    <option name="LAST_COMMIT_MESSAGE" value="corected to yum module" />
+    <MESSAGE value="enable nginx" />
+    <option name="LAST_COMMIT_MESSAGE" value="enable nginx" />
   </component>
 </project>
