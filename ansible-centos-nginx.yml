@@ -42,6 +42,11 @@
         regexp: '^PasswordAuthentication no'
         line: PasswordAuthentication yes
 
+    - name: install epel
+      yum:
+        name: epel-release
+        state: present
+
     - name: install additional packages
       yum:
         name: "{{ item }}"
@@ -88,22 +93,29 @@
       timezone:
         name: Africa/Kampala
 
-    - name: allocate a swap file
-      shell: fallocate -l 1G /swapfile
+    - name: change ssh port
+      lineinfile:
+        dest: "/etc/ssh/sshd_config"
+        regexp: "^Port"
+        line: "port 1234"
 
-    - name: change permission of swap file
-      file:
-        path: /swapfile
-        mode: 600
+#    - name: allocate a swap file
+#      shell: fallocate -l 1G /swapfile
+#
+#    - name: change permission of swap file
+#      file:
+#        path: /swapfile
+#        mode: 600
+#
+#    - name: create swap are on swap file
+#      shell: mkswap /swapfile
+#
+#    - name: Activate the swap file as a swap memory
+#      shell: swapon /swapfile
+#
+#    - name: Append conf in fstab
+#      shell: echo "\n/swapfile none swap sw 0 0\n" >> /etc/fstab
 
-    - name: create swap are on swap file
-      shell: mkswap /swapfile
-
-    - name: Activate the swap file as a swap memory
-      shell: swapon /swapfile
-
-    - name: Append conf in fstab
-      shell: echo "\n/swapfile none swap sw 0 0\n" >> /etc/fstab
 
 
   handlers:
@@ -115,6 +127,11 @@
     - name: restarts ssh
       service:
         name: ssh
+        state: restarted
+
+    - name: restarts sshd
+      systemd:
+        name: sshd
         state: restarted
 
 
