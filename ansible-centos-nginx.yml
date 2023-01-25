@@ -116,16 +116,11 @@
       service:
         name: nginx
         state: restarted
-
     - name: restarts ssh
       service:
         name: ssh
         state: restarted
 
-    - name: restarts sshd
-      systemd:
-        name: sshd
-        state: restarted
 
 
 
