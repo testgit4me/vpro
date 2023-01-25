@@ -114,7 +114,7 @@
       shell: mkswap /swapfile
 
     - name: Activate the swap file as a swap memory
-      shell: swapon /swapfile
+      command: swapon /swapfile
 
     - name: Append conf in fstab
       command: sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
