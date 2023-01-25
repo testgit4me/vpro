@@ -2,6 +2,7 @@
 - name: Install nginx with ansible on centos system
   hosts: localhost
   become: yes
+
   tasks:
     - name: installs nginx web server
       apt:

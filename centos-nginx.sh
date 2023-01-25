@@ -19,6 +19,13 @@ sudo wget https://templatemo.com/tm-zip-files-2020/templatemo_582_tale_seo_agenc
 sudo cp -rf templatemo_582_tale_seo_agency/* /usr/share/nginx/html/
 sudo systemctl reload nginx
 
+# installs ansible
+sudo yum install epel-release -y
+sudo yum install ansible -y
+ansible --version
+ansible localhost -m ping
+ansible localhost -a 'free -m'
+
 sudo timedatectl set-timezone Africa/Kampala
 sudo yum install ntp -y
 sudo systemctl start ntpd
