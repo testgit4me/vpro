@@ -31,6 +31,8 @@ sudo swapon /swapfile
 sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
 sudo poweroff
 
+
+
 sudo yum install firewalld -y
 sudo systemctl start firewalld
 sudo systemctl enable firewalld
