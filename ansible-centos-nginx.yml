@@ -6,9 +6,9 @@
   tasks:
     - name: installs nginx web server
       apt:
-        - name: nginx
-          state: present
-          update_cache: yes
+        name: nginx
+        state: present
+        update_cache: yes
       notify: restarts nginx
 
     - name: install additional packages

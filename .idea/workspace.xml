@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="ansible file corrected">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="corrected quotes on items option">
       <change beforePath="$PROJECT_DIR$/ansible-centos-nginx.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible-centos-nginx.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674637698958</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="corrected quotes on items option">
+      <created>1674638089631</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674638089631</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -81,6 +87,7 @@
     <MESSAGE value="ansible-centos-nginx.yml - added nginx install" />
     <MESSAGE value="some comments" />
     <MESSAGE value="ansible file corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="ansible file corrected" />
+    <MESSAGE value="corrected quotes on items option" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected quotes on items option" />
   </component>
 </project>
