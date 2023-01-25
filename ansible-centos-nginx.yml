@@ -52,13 +52,6 @@
         line: 'UseLogin yes'
       notify: restarts ssh
 
-    - name: testing lineinfile
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        state: present
-        regexp: '^#?PermitEmptyPasswords'
-        line: 'PermitEmptyPasswords yes'
-
     - name: install epel
       yum:
         name: epel-release
