@@ -27,12 +27,14 @@
         path: /etc/sudoers
         line: "ansible  ALL=(ALL)       NOPASSWD: ALL"
         create: yes
+      notify: restarts ssh
 
     - name: disable root login
       lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^#PermitRootLogin yes'
         line: PermitRootLogin no
+      notify: restarts ssh
 
     - name: enable password authentication
       lineinfile:
@@ -81,12 +83,20 @@
       delegate_to: localhost
       notify: restarts nginx
 
+    - name: Set timezone to Africa/Kampala
+      community.general.timezone:
+        name: Africa/Kampala
+
   handlers:
     - name: restarts nginx
       service:
         name: nginx
         state: restarted
 
+    - name: restarts ssh
+      service:
+        name: ssh
+        state: restarted
 
 
 
