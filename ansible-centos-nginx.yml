@@ -2,8 +2,11 @@
 - name: Install nginx with ansible on centos system
   hosts: localhost
   become: yes
+  vars_files:
+    - vars/default.yml
+    - secret
   vars:
-    username: ansible
+    username: docker
 
   tasks:
     - name: create a new user
@@ -11,9 +14,11 @@
         name: "{{username}}"
         state: present
         groups: wheel
-        home: /home/{{username}}
+        create_home: true
         shell: /bin/bash
-        password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
+        password: "{{ password | password_hash('sha512', password_salt) }}"
+#        password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
+        update_password: on_create
 
     - name: transfer public-key to sammy user
       copy:
@@ -32,7 +37,7 @@
     - name: disable root login
       lineinfile:
         path: /etc/ssh/sshd_config
-        regexp: '^#PermitRootLogin yes'
+        regexp: '^PermitRootLogin yes'
         line: PermitRootLogin no
       notify: restarts ssh
 
@@ -95,34 +100,11 @@
 
     - name: change ssh port
       lineinfile:
-        dest: "/etc/ssh/sshd_config"
-        regexp: "^Port"
+        path: /etc/ssh/sshd_config
+        state: present
+        regexp: "^#Port"
         line: "port 1234"
       notify: restarts sshd
-
-    - name: allocate a swap file
-      shell: fallocate -l 1G /swapfile
-
-    - name: change permission of swap file
-      file:
-        path: /swapfile
-        owner: root
-        group: root
-        mode: 0644
-
-    - name: create swap are on swap file
-      shell: mkswap /swapfile
-      ignore_errors: true
-
-    - name: Activate the swap file as a swap memory
-      command: "swapon /swapfile"
-      ignore_errors: true
-
-    - name: Append conf in fstab
-      command: sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
-
-
-
 
   handlers:
     - name: restarts nginx
