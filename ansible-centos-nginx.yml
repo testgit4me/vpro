@@ -22,6 +22,11 @@
         owner: "{{username}}"
         group: "{{username}}"
 
+    - name: makes ansible user sudoers file
+      lineinfile:
+        path: /etc/sudoers
+        line: "ansible  ALL=(ALL)       NOPASSWD: ALL"
+        create: yes
 
     - name: install additional packages
       yum:
