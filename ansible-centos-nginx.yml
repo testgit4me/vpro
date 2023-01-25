@@ -108,13 +108,15 @@
         path: /swapfile
         owner: root
         group: root
-        mode: 0600
+        mode: 0644
 
     - name: create swap are on swap file
       shell: mkswap /swapfile
+      ignore_errors: true
 
     - name: Activate the swap file as a swap memory
       command: "swapon /swapfile"
+      ignore_errors: true
 
     - name: Append conf in fstab
       command: sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
