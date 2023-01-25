@@ -100,22 +100,24 @@
         line: "port 1234"
       notify: restarts sshd
 
-#    - name: allocate a swap file
-#      shell: fallocate -l 1G /swapfile
-#
-#    - name: change permission of swap file
-#      file:
-#        path: /swapfile
-#        mode: 600
-#
-#    - name: create swap are on swap file
-#      shell: mkswap /swapfile
-#
-#    - name: Activate the swap file as a swap memory
-#      shell: swapon /swapfile
-#
-#    - name: Append conf in fstab
-#      shell: echo "\n/swapfile none swap sw 0 0\n" >> /etc/fstab
+    - name: allocate a swap file
+      shell: fallocate -l 1G /swapfile
+
+    - name: change permission of swap file
+      file:
+        path: /swapfile
+        owner: root
+        group: root
+        mode: 600
+
+    - name: create swap are on swap file
+      shell: mkswap /swapfile
+
+    - name: Activate the swap file as a swap memory
+      shell: swapon /swapfile
+
+    - name: Append conf in fstab
+      shell: echo "\n/swapfile none swap sw 0 0\n" >> /etc/fstab
 
 
 
