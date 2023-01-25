@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/centos-nginx.sh" beforeDir="false" afterPath="$PROJECT_DIR$/centos-nginx.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx-centos.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ansible-centos-nginx.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testfile" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
