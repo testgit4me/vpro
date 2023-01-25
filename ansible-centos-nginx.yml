@@ -42,6 +42,15 @@
         path: /etc/ssh/sshd_config
         regexp: '^PasswordAuthentication no'
         line: PasswordAuthentication yes
+      notify: restarts ssh
+
+    - name: testing lineinfile
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        state: present
+        regexp: '^#?UseLogin'
+        line: 'UseLogin yes'
+      notify: restarts ssh
 
     - name: install epel
       yum:
@@ -94,13 +103,13 @@
       timezone:
         name: Africa/Kampala
 
-    - name: change ssh port
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        state: present
-        regexp: "^#Port"
-        line: "port 1234"
-      notify: restarts sshd
+#    - name: change ssh port
+#      lineinfile:
+#        path: /etc/ssh/sshd_config
+#        state: present
+#        regexp: "^#Port"
+#        line: "port 1234"
+#      notify: restarts sshd
 
   handlers:
     - name: restarts nginx
