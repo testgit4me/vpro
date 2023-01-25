@@ -84,8 +84,8 @@
       notify: restarts nginx
 
     - name: Set timezone to Africa/Kampala
-      community.general.timezone:
-       name: Africa/Kampala
+      timezone:
+        name: Africa/Kampala
 
   handlers:
     - name: restarts nginx
