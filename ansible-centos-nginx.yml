@@ -9,13 +9,6 @@
         name: nginx
         state: present
         update_cache: yes
-      notify: restarts nginx
-
-#    - name: start & enable nginx
-#      systemd:
-#        name: nginx
-#        state: started
-#        enabled: yes
 
     - name: start & enable nginx
       service:
@@ -33,6 +26,24 @@
         - unzip
         - nano
         - tmux
+
+    - name: download template & unarchieve
+      unarchive:
+        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+        dest: /opt
+        remote_src: yes
+
+    - name: clean current html directory
+      file:
+        state: absent
+        path: /usr/share/nginx/html/
+
+    - name: copy web files to devops.me directory
+      synchronize:
+        src: /opt/2119_gymso_fitness/
+        dest: /usr/share/nginx/html/
+      delegate_to: localhost
+      notify: restarts nginx
 
   handlers:
     - name: restarts nginx

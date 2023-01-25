@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="testing service module" />
+    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="testing service module">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible-centos-nginx.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible-centos-nginx.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
