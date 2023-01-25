@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="adding swap file">
+    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="adding conf">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ansible-centos-nginx.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible-centos-nginx.yml" afterDir="false" />
     </list>
@@ -240,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674665488674</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="adding conf">
+      <created>1674667384310</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1674667384310</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -267,6 +274,7 @@
     <MESSAGE value="changed ssh port" />
     <MESSAGE value="swap file fixing" />
     <MESSAGE value="adding swap file" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding swap file" />
+    <MESSAGE value="adding conf" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding conf" />
   </component>
 </project>

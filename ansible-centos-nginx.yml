@@ -3,7 +3,6 @@
   hosts: localhost
   become: yes
   vars_files:
-    - vars/default.yml
     - secret
   vars:
     username: docker
