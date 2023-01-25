@@ -28,6 +28,18 @@
         line: "ansible  ALL=(ALL)       NOPASSWD: ALL"
         create: yes
 
+    - name: disable root login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#PermitRootLogin yes'
+        line: PermitRootLogin no
+
+    - name: enable password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication no'
+        line: PasswordAuthentication yes
+
     - name: install additional packages
       yum:
         name: "{{ item }}"
