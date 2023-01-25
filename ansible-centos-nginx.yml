@@ -52,6 +52,7 @@
         - unzip
         - nano
         - tmux
+        - ntp
 
     - name: installs nginx web server
       yum:
@@ -86,6 +87,24 @@
     - name: Set timezone to Africa/Kampala
       timezone:
         name: Africa/Kampala
+
+    - name: allocate a swap file
+      shell: fallocate -l 1G /swapfile
+
+    - name: change permission of swap file
+      file:
+        path: /swapfile
+        mode: chmod 600
+
+    - name: create swap are on swap file
+      shell: mkswap /swapfile
+
+    - name: Activate the swap file as a swap memory
+      shell: swapon /swapfile
+
+    - name: Append configuration in /etc/fstab
+      shell: echo "\n/swapfile none swap sw 0 0" >> /etc/fstab'
+
 
   handlers:
     - name: restarts nginx

@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="Set timezone to Africa/Kampala corrected">
+    <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="Set timezone to Africa/Kampala fixing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ansible-centos-nginx.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible-centos-nginx.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/centos-nginx.sh" beforeDir="false" afterPath="$PROJECT_DIR$/centos-nginx.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674660624417</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Set timezone to Africa/Kampala fixing">
+      <created>1674660718892</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1674660718892</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -183,6 +192,7 @@
     <MESSAGE value="disable root login" />
     <MESSAGE value="Set timezone to Africa/Kampala" />
     <MESSAGE value="Set timezone to Africa/Kampala corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set timezone to Africa/Kampala corrected" />
+    <MESSAGE value="Set timezone to Africa/Kampala fixing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set timezone to Africa/Kampala fixing" />
   </component>
 </project>

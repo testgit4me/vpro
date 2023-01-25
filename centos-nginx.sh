@@ -31,14 +31,11 @@ sudo yum install ntp -y
 sudo systemctl start ntpd
 sudo systemctl enable ntpd
 
-sudo fallocate -l 4G /swapfile
+sudo fallocate -l 1G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
-sudo poweroff
-
-
 
 sudo yum install firewalld -y
 sudo systemctl start firewalld
