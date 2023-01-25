@@ -2,8 +2,6 @@
 - name: Install nginx with ansible on centos system
   hosts: localhost
   become: yes
-  vars_files:
-    - secret
   vars:
     username: docker
 
@@ -15,8 +13,7 @@
         groups: wheel
         create_home: true
         shell: /bin/bash
-        password: "{{ password | password_hash('sha512', password_salt) }}"
-#        password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
+        password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
         update_password: on_create
 
     - name: transfer public-key to sammy user
