@@ -94,7 +94,7 @@
     - name: change permission of swap file
       file:
         path: /swapfile
-        mode: chmod 600
+        mode: 600
 
     - name: create swap are on swap file
       shell: mkswap /swapfile
