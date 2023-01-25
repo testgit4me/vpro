@@ -15,6 +15,13 @@
         shell: /bin/bash
         password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
 
+    - name: transfer public-key to sammy user
+      copy:
+        src: /home/centos/.ssh
+        dest: /home/{{username}}
+        owner: "{{username}}"
+        group: "{{username}}"
+
 
     - name: install additional packages
       yum:
