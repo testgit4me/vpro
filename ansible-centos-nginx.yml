@@ -108,7 +108,7 @@
         path: /swapfile
         owner: root
         group: root
-        mode: 600
+        mode: 0600
 
     - name: create swap are on swap file
       shell: mkswap /swapfile
@@ -117,7 +117,8 @@
       shell: swapon /swapfile
 
     - name: Append conf in fstab
-      shell: echo "\n/swapfile none swap sw 0 0\n" >> /etc/fstab
+      command: sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
+
 
 
 
