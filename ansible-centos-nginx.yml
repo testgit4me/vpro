@@ -5,14 +5,14 @@
 
   tasks:
     - name: installs nginx web server
-      apt:
+      yum:
         name: nginx
         state: present
         update_cache: yes
       notify: restarts nginx
 
     - name: install additional packages
-      apt:
+      yum:
         name: "{{ item }}"
         state: present
         update_cache: yes
