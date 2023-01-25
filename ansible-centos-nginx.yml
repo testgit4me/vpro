@@ -98,6 +98,7 @@
         dest: "/etc/ssh/sshd_config"
         regexp: "^Port"
         line: "port 1234"
+      notify: restarts sshd
 
 #    - name: allocate a swap file
 #      shell: fallocate -l 1G /swapfile
