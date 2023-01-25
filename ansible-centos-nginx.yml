@@ -58,7 +58,6 @@
         state: present
         regexp: '^#?PermitEmptyPasswords'
         line: 'PermitEmptyPasswords yes'
-      notify: restarts ssh
 
     - name: install epel
       yum:
