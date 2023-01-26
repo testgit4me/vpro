@@ -51,6 +51,29 @@ docker hub is regitry,
 images becomes containers when we run them on docekr engine
 docker pull, docker run
 
+We can build our customized images using docker files,
+to build images we need to create Dockerfile, 
+in this file we provide instructions how to build images, what port to expose, what packeges should be installed, volumes, 
+
+Docker file conatins its own commands instaructions
+- from - we specufy base images for example ubuntu, centos or other images form docker hub
+- labels - we can give inf about project name, author name
+- RUN - makes changes, when we need to install packeges, create directory, files or execute any other commands we use RUN
+- ADD/COPY - they adds/copies files like conf files or archives from host machine into the image. 
+the diference is COPY just take the files and dump it. for ADD instructions we can give a link and it download and put in image or unarchive if it is an archive file.
+- CMD - gives an instruction which binary/commands showld be executed we do docker run
+- ENTRY POINT -  similar to CMD, but more priority, if we use both of them in docker file, we can mention command on entrypoint and argument to this command in CMD.
+- VOLUME - we indicate which volume we want to export from container and mount to directory in host machine, example apache make volume for /var/www/html. Volume/Bind mount 
+- EXPOSE - when we mention binaries in CMD and it starts process, this process could be binding to specific port namber (nginx 80, mysql 3306) so what ever the port the process is binding to, we have to give the same port in EXPOSE. then we can do port mapping when we do docker run
+- USER - specifies which user will be running the process
+- ENV - we set environmet variables
+- WORKDIR - we will set active working directory. whe we execute a command, by default, the command will be executed under this folder
+- ARG - spefies a variable which the user can pass during the build time.
+- ONDUILD instruction is usefull to use this image as an base image when you building some other images.
+
+Layers?
+
+
 Docker registries
 - cloud based - dockerhub, google container registry, amazon ECR
 - local registries - nexus3+ , jfrog artifactory
@@ -88,7 +111,16 @@ Volumes and bind mount almost similar, just volumes are directly managed by the 
 
 usi haptede fininish docker telling and may labs
 
+what is CMD?
+cmd is tthe place where we give the command which starts the container process.
+CMD ["echo", "hello"] echo - command, hello - argument
+Etrypoint is alose used to start the container, but it uses command or script files to start the container, 
+entry poit has more priority than CMD
+if both of them is used in docker file, give command to entry point , as argument can use from CMD
 
+what is docker-compose
+what is cgroup?
+what is namespece?
 
 
 
