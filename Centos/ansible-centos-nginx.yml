@@ -1,0 +1,135 @@
+---
+- name: Install nginx with ansible on centos system
+  hosts: localhost
+  become: yes
+  vars:
+    username: docker
+
+  tasks:
+    - name: create a new user
+      user:
+        name: "{{username}}"
+        state: present
+        groups: wheel
+        create_home: true
+        shell: /bin/bash
+        password: '$6$ia7WnUJHgX73$pWPWXbO8KfJ6CJFubhw.mLVDX0kOl07lAypN2Xe/NPwrAiEUpPv6mMtSnLo.oAoNrDh/lDPnCiYP8Mf2ITSMW0'
+        update_password: on_create
+
+    - name: transfer public-key to sammy user
+      copy:
+        src: /home/centos/.ssh
+        dest: /home/{{username}}
+        owner: "{{username}}"
+        group: "{{username}}"
+
+    - name: makes ansible user sudoers file
+      lineinfile:
+        path: /etc/sudoers
+        line: "ansible  ALL=(ALL)       NOPASSWD: ALL"
+        create: yes
+      notify: restarts ssh
+
+    - name: disable root login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin yes'
+        line: PermitRootLogin no
+      notify: restarts ssh
+
+    - name: enable password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: PasswordAuthentication yes
+      notify: restarts ssh
+
+    - name: testing lineinfile
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        state: present
+        regexp: '^#?UseLogin'
+        line: 'UseLogin yes'
+      notify: restarts ssh
+
+    - name: install epel
+      yum:
+        name: epel-release
+        state: present
+
+    - name: install additional packages
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - wget
+        - unzip
+        - nano
+        - tmux
+        - ntp
+
+    - name: installs nginx web server
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: start & enable nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: download template & unarchieve
+      unarchive:
+        src: https://www.tooplate.com/zip-templates/2119_gymso_fitness.zip
+        dest: /opt
+        remote_src: yes
+
+    - name: clean current html directory
+      file:
+        state: absent
+        path: /usr/share/nginx/html/
+
+    - name: copy web files to devops.me directory
+      synchronize:
+        src: /opt/2119_gymso_fitness/
+        dest: /usr/share/nginx/html/
+      delegate_to: localhost
+      notify: restarts nginx
+
+    - name: Set timezone to Africa/Kampala
+      timezone:
+        name: Africa/Kampala
+
+#    - name: change ssh port
+#      lineinfile:
+#        path: /etc/ssh/sshd_config
+#        state: present
+#        regexp: "^#Port"
+#        line: "port 1234"
+#      notify: restarts sshd
+
+  handlers:
+    - name: restarts nginx
+      service:
+        name: nginx
+        state: restarted
+    - name: restarts ssh
+      service:
+        name: ssh
+        state: restarted
+
+
+
+
+
+
+
+
+
+
+
+
+
