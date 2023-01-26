@@ -6,11 +6,18 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
     <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/~$cker-notes.docx" afterDir="false" />
 =======
     <list default="true" id="3f147834-a2d5-4e4a-b14f-c62613f0df24" name="Changes" comment="testing lineinfile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 >>>>>>> test
+=======
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3.ubuntu-nginx-install/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3.ubuntu-nginx-install/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 075414021aa446095e07e367841afd15ffb493cf
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,21 +26,31 @@
   </component>
   <component name="Git.Settings">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/2.Project-micro-service-контейнеризация/emartapp" />
 =======
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
 >>>>>>> test
+=======
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+>>>>>>> 075414021aa446095e07e367841afd15ffb493cf
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2Kfg8z2XmduSfiHOVNkORxI43ng" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
 >>>>>>> test
+=======
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+>>>>>>> 075414021aa446095e07e367841afd15ffb493cf
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,8 +58,10 @@
 <<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "F:/torrents/GITHUB/vpro"
   }
 }]]></component>

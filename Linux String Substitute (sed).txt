@@ -1,0 +1,12 @@
+grep -o following BSD.txt 
+grep -i following BSD.txt
+cat BSD.txt | grep and
+
+Delete all lines containing word following and save results in /home/BSD_DELETE.txt file. (Please be aware of case sensitivity)
+grep following BSD.txt
+sed -i "/following/d" BSD.txt
+
+
+Replace all occurrence of word and to their and save results in /home/BSD_REPLACE.txt file.
+cat BSD.txt | grep and
+sed 's/and/their/g' BSD.txt > /home/BSD_REPLACE.txt
