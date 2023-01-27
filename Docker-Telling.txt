@@ -1,3 +1,6 @@
+What is it? ????? ?? ?????? ? ????? ?????????????
+? ?????????????? 2-3 ???? ?? ???? ????
+
 What is containers?
 Container is tool , technology which allows to run processes on an isolated environment using kernel of host OS.
 
@@ -41,7 +44,7 @@ what os namespace && cgroup? Какие системы подсистемы ядра люникс использует док
 Ресурсы процессорные, сетевые, память, ресурсы ввода и вывода
 
 What's Docker images?
-actually this is stopped container, it is an archive
+Image is actually the File System Snaption, actually this is stopped container, it is an archive
 consists of multiple layers, each layer will be some data, 
 when you building your own image, lets say we install package, some appl, git, it will create a layer, create directory is an other layer, so all the layers will be on read only mode
 containers run from the image, directly connected to it, cannot remove image once its container running
@@ -118,9 +121,24 @@ Etrypoint is alose used to start the container, but it uses command or script fi
 entry poit has more priority than CMD
 if both of them is used in docker file, give command to entry point , as argument can use from CMD
 
-what is docker-compose
-what is cgroup?
+what is docker-compose?
+it is utility/tool that can run multiple containers together, make one example
+
 what is namespece?
+- is the mechanizm/feature that which can isolate the resources per the processes or per group of processes
+- resources as users, hard drive, hostnames, network, multiple processes there, these type of things we are going to isolate
+- isolation of resources 
+- namespace can isolate resources
+
+what is cgroup (control group)?
+- can limit resource like CPU, Memory, network, Hard disks 
+- cgroup can limit per process
+- limitation of resources
+- cgroup can limit the resources
+
+- not allow from simple user account via ssh
+- restrict commands, user creation or deletion
+- auto log off of a particuler amount of time
 
 
 
