@@ -1,7 +1,4 @@
-- docker/docker-compose, kubernetes, ansible, terraform, 
-- jenkins on process
 
-test env
 docker/npm/grandle are -> Tools
 
 Build automation -> test code -> build application (jar artifacts/docker images) -> push to repo -> deploy to server
@@ -64,11 +61,19 @@ chmod 666 /var/run/docker.sock
 -v /var/run/docker.sock:/var/run/docker.sock \
 -v $(which docker):/usr/bin/docker
 
+nano Dockerfile
+
+FROM openjdk:8-jre-alpine
+EXPOSE 8080
+COPY ./target/hello-1.0.war /usr/app/
+WORKDIR /usr/app
+ENTRYPOINT ["java", "-war", "hello-1.0.war"]
+
 PUSH to DockerHub:
 
-docker build -t projectvprofile/java-maven-app:jma-1.2 .
+docker build -t projectvprofile/java-maven-app:jma-2.1 .
 echo $PASSWORD | docker login -u $USERNAME --password-stdin
-docker push projectvprofile/java-maven-app:jma-1.2
+docker push projectvprofile/java-maven-app:jma-2.1
 
 PUSH to NEXUS:
 
@@ -78,7 +83,7 @@ nano etc/docker/daemon.json
 {
   "insecure-registries" : ["http://18.117.91.197:8083"]
 }
-
+nano Dockerfile
 docker build -t 18.117.91.197:8083/java-maven-app:jma-1.2 .
 echo $PASSWORD | docker login 18.117.91.197:8083 -u $USERNAME --password-stdin
 docker push 18.117.91.197:8083/java-maven-app:jma-1.2
@@ -93,5 +98,6 @@ joba -> global con-g -> plugins
 additoinal research later:
 echo $PASSWORD | docker login -u $USERNAME --password-stdin -> understand about piping here
 aws volume types -> types of volumes
+how to impelment test/dev/prod environments?
+microservice applications?
 
-docker run -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home -d jenkins/jenkins:lts 
