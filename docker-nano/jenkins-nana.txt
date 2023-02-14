@@ -1,0 +1,97 @@
+- docker/docker-compose, kubernetes, ansible, terraform, 
+- jenkins on process
+
+test env
+docker/npm/grandle are -> Tools
+
+Build automation -> test code -> build application (jar artifacts/docker images) -> push to repo -> deploy to server
+
+Build automation tools - one pupular is jenkins 
+- it is software that we install on a dedicated server
+- UI for conf-n
+- install tools we need like docker/maven/npm/gradle
+- configure the tasks like run tests/build app/deployment
+- configure the automatic trigger of the workflow
+
+so we can do with jenkins -> run tests, build/publish/deploy artifacts and send notifications
+
+integrate jenkins with other tools like docker, build tools, repositories, deployment servers using plugins
+- gitlab plugin
+- docker plugin
+- gradle/maven plugin
+- nexus repo plugin
+- aws ec2 plugin
+
+Practika:
+
+1)
+
+- EC2 instance (2CPU/4GB) & updated, docker installed, run jenkins container
+- tools maven(java files) / nodejs/npm(javascript files)
+
+2)
+
+configure maven version in jenkins UI
+install npm/nodejs in jenkins container 
+
+3)
+
+attach 3 volumes to jenkins-container:
+chmod 666 to docker file in jenkins container:
+create docker image
+create credetials to docker-hub in Jenkins
+push docker image to dockerhub
+push docker image to nexus repository
+
+CMDs:
+
+docker run -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home -d jenkins/jenkins:lts 
+docker exec -u 0 -it jenkins bash
+
+curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+bash /tmp/nodesource_setup.sh %% node -v/npm -v
+wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.0/apache-maven-3.9.0-bin.zip
+bash mvn -v == ./mvn -v
+
+docker run -dt  openjdk:8-jre-alpine
+
+-------------------------------------
+docker run --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock \
+-v $(which docker):/usr/bin/docker -d jenkins/jenkins:lts
+
+chmod 666 /var/run/docker.sock
+-v jenkins_home:/var/jenkins_home 
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v $(which docker):/usr/bin/docker
+
+PUSH to DockerHub:
+
+docker build -t projectvprofile/java-maven-app:jma-1.2 .
+echo $PASSWORD | docker login -u $USERNAME --password-stdin
+docker push projectvprofile/java-maven-app:jma-1.2
+
+PUSH to NEXUS:
+
+Make insecure conf-n & docker restart
+
+nano etc/docker/daemon.json
+{
+  "insecure-registries" : ["http://18.117.91.197:8083"]
+}
+
+docker build -t 18.117.91.197:8083/java-maven-app:jma-1.2 .
+echo $PASSWORD | docker login 18.117.91.197:8083 -u $USERNAME --password-stdin
+docker push 18.117.91.197:8083/java-maven-app:jma-1.2
+
+----------------------------------
+
+plugin == download docker.exe file
+global conf.tool == install/configure docker.exe
+npm is the Node.js package manager
+joba -> global con-g -> plugins
+
+additoinal research later:
+echo $PASSWORD | docker login -u $USERNAME --password-stdin -> understand about piping here
+aws volume types -> types of volumes
+
+docker run -p 8080:8080 -p 50000:50000 --name jenkins -v jenkins_home:/var/jenkins_home -d jenkins/jenkins:lts 

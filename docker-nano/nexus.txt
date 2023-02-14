@@ -1,0 +1,79 @@
+install java
+download nexus package
+untar nex.pack
+create nexus user && give permissions to /opt/nexus
+run nexus with nexus user
+
+nexus:
+created repo docker-host
+added port 8083
+Realms (added Docker bearer token realm)
+
+-------------------------------------
+cat /ets/issue
+apt list | grep openjdk*
+install openjdk-8
+adduser nexus
+make nexus as sudoer (echo "nexus   ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/nexus)
+make && chown -R nexus && cd /opt/nexus folder 
+download nexus-repo (wget https://sonatype-download.global.ssl.fastly.net/repository/downloads-prod-group/3/nexus-3.29.2-02-unix.tar.gz)
+untar nexus-repo (tar xzf nexus-3.29.2-02-unix.tar.gz -C /opt/nexus --strip-components=1)
+add nexus user as nexus runner (modify nexus.rc file)
+nexus-3.29.2-02/bin/nexus start/stop 
+ps aux | grep nexus 
+netstat -lnpt/tpln
+telnet localhost 8081
+
+nano etc/docker/daemon.json
+{
+  "insecure-registries" : ["http://18.224.43.37:8083"]
+}
+
+docker login http://18.224.43.37:8083
+docker build -t 18.224.43.37:8083/app:1.1 .
+docker tag 18.224.43.37:8083/app:1.1 18.224.43.37:8083/app:1.2
+docker push 18.224.43.37:8083/app:1.2
+
+nano Dockerfile
+FROM openjdk:8-jre-alpine
+EXPOSE 8080
+ENTRYPOINT ["java", "-war", "hello-1.0.war"]
+
+2) DOCKER-nexus
+docker volume create --name nexus-data
+docker run -d -p 8081:8081 -p 8083:8083 --name nexus -v nexus-data:/nexus-data sonatype/nexus3
+docker build -t 18.117.91.197:8083/app:1.1 .
+
+a) nano etc/docker/daemon.json
+{
+  "insecure-registries" : ["http://18.117.91.197:8083"]
+}
+
+b) nano ~/.docker/config.json
+
+c) 
+docker login http://18.117.91.197:8083
+docker push 18.117.91.197:8083/app:1.1
+
+Research:
+1)make nexus.serive like below but it did not worked, need later check it
+cat > /etc/systemd/system/nexus.service << 'EOL'
+[Unit]
+Description=nexus service
+After=network.target
+[Service]
+Type=forking
+LimitNOFILE=65536
+ExecStart=/opt/nexus/bin/nexus start
+ExecStop=/opt/nexus/bin/nexus stop
+User=nexus
+Restart=on-abort
+[Install]
+WantedBy=multi-user.target
+EOL
+
+2)need learn making of services like nexus.service/tomcat.service
+3)keep nuxus/jenkins volumes in outside volumes (S3/disk/volume)
+
+
+
