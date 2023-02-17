@@ -7,6 +7,7 @@ docker images
 docker stop we01 -> stop container
 docker rm web01 -> removes container
 docker rmi web01 -> removes image
+docker rm $(docker ps -aq)
 docker system prune => deletes all stopped containers
 
 docker pull nginx
