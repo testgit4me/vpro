@@ -147,6 +147,8 @@ playbook
 
 
 ********************************************************
+ansible all --list-hosts
+
 ansible -i inventory -m ping db01
 ansible -i inventory -m ping all
 ansible -i inventory -m ping web_srv
@@ -310,7 +312,7 @@ register = this is some information about a task
 ansadmin -> aws iam
 nano .bashrc 
 source .bashrc 
-ec2_key module � Create or delete an EC2 key pair
+ec2_key module – Create or delete an EC2 key pair
 pip
 boto3
 =======
@@ -324,7 +326,7 @@ boto3
 -----------------
 
 1. zborka(centos node) - ustanova maven, 
-1.2 нужен java-app
+1.2 Ð½ÑƒÐ¶ÐµÐ½ java-app
 2.2 prod (centos node) - ustanovaka tomcat
 -------------------
 
