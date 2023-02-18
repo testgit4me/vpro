@@ -164,6 +164,16 @@ ansible all -a "uptime"
 ansible-playbook -e dbname=cliUsers playbook.yaml
 ansible -m setup web01
 
+Testing connections via playbook:
+- name: DevOps
+  hosts: servers
+  tasks:
+    - name: ping my hosts
+      ping:
+    - name: print message
+      debug:
+        msg: Hello print
+
 ********************************************************
 
 26283 1773073
